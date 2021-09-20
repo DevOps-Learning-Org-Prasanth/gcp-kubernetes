@@ -1,7 +1,9 @@
 name: Plan-on-push
 on:
   push:
-    branch: '!master'
+    branch:
+      - '**' 
+      - '!master'
 
 jobs:
   plan:
