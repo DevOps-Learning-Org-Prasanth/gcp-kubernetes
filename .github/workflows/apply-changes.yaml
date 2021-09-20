@@ -1,4 +1,4 @@
-name: Manual Cluster
+name: Create Cluster
 on:
   workflow_dispatch:  
     Operation:
