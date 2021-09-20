@@ -30,7 +30,7 @@ jobs:
         id: init
         working-directory: ./
         run: |
-          terraform init -input=false -backend-config .env/cluster.state.tf
+          terraform init -input=false -backend-config ./env/cluster.state.tf
         
       - name: Terraform plan
         id: plan
