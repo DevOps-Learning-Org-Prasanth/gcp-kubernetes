@@ -1,0 +1,85 @@
+name: Create Cluster
+on:
+  workflow_dispatch:  
+    Operation:
+      description: "create or delete"
+      default: 'create'
+      required: true
+
+jobs:
+  Create:
+    name: create cluster
+    if: ${{ github.event.inputs.Operation == 'create' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: hashicorp/setup=terraform@v1.2.1
+        with:
+          terraform_version: 1.0.2
+          terraform_wrapper: false
+      
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_AUTH_KEY }}
+          export_default_credentials: true
+      
+      - name: Terraform init
+        id: init
+        working-directory: ./
+        run: |
+          terraform init -input=false -backend-config .env/cluster.state.tf
+        
+      - name: Terraform plan
+        id: plan
+        working-directory: ./ 
+        run: |
+          terraform plan -input=false -refresh=true -var-file=./env/cluster.tfvars
+        
+      - name: Terraform Apply
+        id: apply
+        continue-on-error: true
+        working-directory: ./
+        run: |
+          terraform apply -input=false -refresh=true -var-file=./env/cluster.tfvars -auto-approve
+  
+  Destroy:
+    name: destroy cluster
+    if: ${{ github.event.inputs.Operation == 'delete' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - uses: hashicorp/setup=terraform@v1.2.1
+        with:
+          terraform_version: 1.0.2
+          terraform_wrapper: false
+      
+      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+        with:
+          version: '290.0.1'
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_AUTH_KEY }}
+          export_default_credentials: true
+      
+      - name: Terraform init
+        id: init
+        working-directory: ./
+        run: |
+          terraform init -input=false -backend-config .env/cluster.state.tf
+        
+      - name: Terraform plan
+        id: plan
+        working-directory: ./ 
+        run: |
+          terraform plan -input=false -refresh=true -var-file=./env/cluster.tfvars
+        
+      - name: Terraform Apply
+        id: apply
+        continue-on-error: true
+        working-directory: ./
+        run: |
+          terraform destroy -input=false -refresh=true -var-file=./env/cluster.tfvars -auto-approve

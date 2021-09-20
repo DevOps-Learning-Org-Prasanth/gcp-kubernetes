@@ -1,0 +1,59 @@
+name: Plan-on-push
+on:
+  push:
+    branch: '!master'
+
+jobs:
+  plan:
+    name: plan on push
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+      
+      - uses: hashicorp/setup-terraform@v1.2.1
+        with:
+          terraform_version: 1.0.2
+          terraform_wrapper: false
+      
+      - uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ secrets.GCP_PROJECT_ID }}
+          service_account_key: ${{ secrets.GCP_AUTH_KEY }}
+          export_default_credentials: true
+      
+      - name: Terraform init
+        id: init
+        working-directory: ./
+        run: |
+          terraform init -input=false -backend-config .env/cluster.state.tf
+
+      - name: terraform fmt
+        id: fmt
+        working-directory: ./
+        run: |
+          terraform fmt -recursive
+      
+      - uses: terraform-linters/setup-tflint@v1.1.0
+        name: Setup TFLint
+        with:
+          tflint_version: latest
+
+      - name: Init TFLint
+        run: tflint --init
+
+      - name: Run TFLint
+        run: tflint -f compact
+
+      - name: Lint modules directory in a loop
+        run: |
+          for m in $(ls -1d modules/*/)
+          do
+            tflint --config ./.tflint.hcl ./${m}
+          done
+        
+      - name: Terraform plan
+        id: plan
+        working-directory: ./ 
+        run: |
+          terraform plan -input=false -refresh=true -var-file=./env/cluster.tfvars
