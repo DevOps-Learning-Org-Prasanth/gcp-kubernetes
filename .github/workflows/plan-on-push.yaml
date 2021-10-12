@@ -47,12 +47,12 @@ jobs:
       - name: Run TFLint
         run: tflint -f compact
 
-      - name: Lint modules directory in a loop
-        run: |
-          for m in $(ls -1d modules/*/)
-          do
-            tflint --config ./.tflint.hcl ./${m}
-          done
+      # - name: Lint modules directory in a loop
+        # run: |
+          # for m in $(ls -1d modules/*/)
+          # do
+            # tflint --config ./.tflint.hcl ./${m}
+          # done
         
       - name: Terraform plan
         id: plan
