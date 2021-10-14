@@ -1,18 +1,3 @@
-variable subnets {
-  type = list(object({
-    name = string
-    cidr = string
-  }))
-  description = <<-DESC
-    List of subnets to be created:
-    format:
-    {
-      name : kubecluster,
-      cidr : 10.0.20.0/24,
-    }
-  DESC
-}
-
 variable firewalls {
   type = list(object({
     name = string
@@ -21,7 +6,7 @@ variable firewalls {
   }))
   description = <<-DESC
     Input should be in following manner
-    firewalls = [
+    components = [
       {
         name : "master",,
         ports : ["22","33","100-10000"],
