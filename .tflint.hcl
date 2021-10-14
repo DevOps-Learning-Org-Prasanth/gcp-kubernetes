@@ -4,7 +4,7 @@ config {
   disabled_by_default = false
 }
 
-plugin "azurerm" {
+plugin "google" {
     enabled = true
     version = "0.11.0"
     source  = "https://github.com/terraform-linters/tflint-ruleset-google"
