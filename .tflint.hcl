@@ -7,7 +7,7 @@ config {
 plugin "azurerm" {
     enabled = true
     version = "0.11.0"
-    source  = "github.com/terraform-linters/tflint-ruleset-azurerm"
+    source  = "https://github.com/terraform-linters/tflint-ruleset-google"
 }
 
 rule "terraform_deprecated_index" {
@@ -41,7 +41,7 @@ rule "terraform_naming_convention" {
 }
 
 rule "terraform_required_version" {
-  enabled = true
+  enabled = false
 }
 
 # this is false because the azurerm provider has been updated
