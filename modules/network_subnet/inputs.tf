@@ -1,4 +1,4 @@
-variable subnets {
+variable "subnets" {
   type = list(object({
     name = string
     cidr = string
@@ -13,7 +13,7 @@ variable subnets {
   DESC
 }
 
-variable region{
-  type = string
+variable "region" {
+  type        = string
   description = "Region where subnet should be created"
 }

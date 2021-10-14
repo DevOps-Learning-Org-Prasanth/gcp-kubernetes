@@ -1,4 +1,4 @@
-variable subnets {
+variable "subnets" {
   type = list(object({
     name = string
     cidr = string
@@ -13,11 +13,11 @@ variable subnets {
   DESC
 }
 
-variable firewalls {
+variable "firewalls" {
   type = list(object({
-    name = string
+    name  = string
     ports = list(string)
-    tags = string
+    tags  = string
   }))
   description = <<-DESC
     Input should be in following manner

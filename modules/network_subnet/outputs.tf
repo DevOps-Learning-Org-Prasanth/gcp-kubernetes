@@ -1,10 +1,10 @@
-output subnets {
-  value = { for subnet in var.subnets: 
-        (subnet.name) => {
-          cidr = subnet.cidr
-          id = google_compute_subnetwork.main[subnet.name].id
-        }
-      }
+output "subnets" {
+  value = { for subnet in var.subnets :
+    (subnet.name) => {
+      cidr = subnet.cidr
+      id   = google_compute_subnetwork.main[subnet.name].id
+    }
+  }
   description = <<-DESC
     Will output the subnets created in following format.
     subnets = {

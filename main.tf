@@ -1,29 +1,30 @@
 # vpc
 module "vpc" {
-  source = "./modules/network_subnet"
+  source  = "./modules/network_subnet"
   subnets = var.subnets
+  region  = local.region
 }
 
 # firewall
-module "firewall"{
-  source = "./modules/firewall"
+module "firewall" {
+  source    = "./modules/firewall"
   firewalls = var.firewalls
 }
 
 # loadbalancer
 # module "loadbalancer" {
-  # source = "./modules/loadbalancer"
+# source = "./modules/loadbalancer"
 # }
 
 # master node
 # module "master_node" {
-  # source   = "./modules/linux_servers"
-  # tiercode = "mtr"
+# source   = "./modules/linux_servers"
+# tiercode = "mtr"
 # }
 
 # worker nodes
 # module "worker_node" {
-  # source   = "./modules/linux_servers"
-  # tiercode = "wkr"
-  # count    = 2
+# source   = "./modules/linux_servers"
+# tiercode = "wkr"
+# count    = 2
 # }
