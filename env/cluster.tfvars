@@ -22,12 +22,12 @@ firewalls = [
   },
   {
     name : "public",
-    port : ["30000-30100"],
+    ports : ["30000-30100"],
     tags : "public_access",
   },
   {
     name : "ssh",
-    port : ["22"],
+    ports : ["22"],
     tags : "ssh_access",
   }
 ]
