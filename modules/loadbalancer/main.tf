@@ -9,7 +9,7 @@ resource "google_compute_target_pool" "main" {
 resource "google_compute_health_check" "tcp" {
   name = "tcp-health-check"
   dynamic "tcp_health_check" {
-    for_each = toset(ports)
+    for_each = toset(var.ports)
     content {
       port = tcp_health_check.value
     }
