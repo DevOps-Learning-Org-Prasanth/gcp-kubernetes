@@ -1,10 +1,11 @@
 name: Manual Cluster
 on:
-  workflow_dispatch:  
-    Operation:
-      description: "create or delete"
-      default: 'create'
-      required: true
+  inputs:
+    workflow_dispatch:  
+      Operation:
+        description: "create or delete"
+        default: 'create'
+        required: true
 
 jobs:
   Create:
