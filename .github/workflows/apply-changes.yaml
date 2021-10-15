@@ -59,9 +59,8 @@ jobs:
           terraform_version: 1.0.2
           terraform_wrapper: false
       
-      - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      - uses: google-github-actions/setup-gcloud@master
         with:
-          version: '290.0.1'
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           service_account_key: ${{ secrets.GCP_AUTH_KEY }}
           export_default_credentials: true
