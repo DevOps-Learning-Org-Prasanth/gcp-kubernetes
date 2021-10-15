@@ -16,12 +16,12 @@ module "firewall" {
 
 # loadbalancer
 module "loadbalancer" {
-  source = "./modules/loadbalancer"
-  instances = concat(module.master_node.instances,module.worker_node.instances)
+  source    = "./modules/loadbalancer"
+  instances = concat(module.master_node.instances, module.worker_node.instances)
   depends_on = [
     module.master_node, module.worker_node
   ]
-  ports = [for firewall in firewalls: firewall.ports if firewall.name == "public"]
+  ports = [for firewall in var.firewalls : firewall.ports if firewall.name == "public"]
 }
 
 # master node
