@@ -1,7 +1,7 @@
 name: Manual Cluster
 on:
-  inputs:
-    workflow_dispatch:  
+  workflow_dispatch:  
+    inputs:
       Operation:
         description: "create or delete"
         default: 'create'
