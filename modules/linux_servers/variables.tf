@@ -8,7 +8,7 @@ variable "tiercode" {
   description = "tier code of the machine"
 }
 
-variable "count" {
+variable "server_count" {
   type        = string
   description = "Number of machines to create"
 }

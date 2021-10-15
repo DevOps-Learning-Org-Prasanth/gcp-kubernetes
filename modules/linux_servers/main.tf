@@ -1,5 +1,5 @@
 resource "google_compute_instance" "main" {
-  count = var.count
+  count = var.server_count
   name  = "us-1c-${var.tiercode}-vm${count.index}"
   tags  = local.tags
 

@@ -20,7 +20,7 @@ module "firewall" {
 module "master_node" {
   source           = "./modules/linux_servers"
   tiercode         = "mtr"
-  count            = 1
+  server_count     = 1
   subnet_self_link = module.vpc["kubecluster"].id
   zone             = local.zone
   tags             = ["master"]
@@ -31,7 +31,7 @@ module "master_node" {
 module "worker_node" {
   source           = "./modules/linux_servers"
   tiercode         = "wkr"
-  count            = 2
+  server_count     = 2
   subnet_self_link = module.vpc["kubecluster"].id
   zone             = local.zone
   tags             = ["worker"]
