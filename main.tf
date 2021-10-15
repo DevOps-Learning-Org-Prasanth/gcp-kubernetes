@@ -9,6 +9,9 @@ module "vpc" {
 module "firewall" {
   source    = "./modules/firewall"
   firewalls = var.firewalls
+  depends_on = [
+    module.vpc
+  ]
 }
 
 # loadbalancer
@@ -25,6 +28,9 @@ module "master_node" {
   zone             = local.zone
   tags             = ["master"]
   machine_type     = local.machine_type
+  depends_on = [
+    module.firewall
+  ]
 }
 
 # worker nodes
@@ -36,4 +42,7 @@ module "worker_node" {
   zone             = local.zone
   tags             = ["worker"]
   machine_type     = local.machine_type
+  depends_on = [
+    module.firewall
+  ]
 }
