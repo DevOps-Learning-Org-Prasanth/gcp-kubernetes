@@ -1,4 +1,5 @@
 locals {
-  region = "us-central1"
-  # location = "us-central1-c"
+  region       = "us-central1"
+  zone         = "us-central1-c"
+  machine_type = "e2-medium"
 }
