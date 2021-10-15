@@ -69,7 +69,7 @@ jobs:
         id: init
         working-directory: ./
         run: |
-          terraform init -input=false -backend-config .env/cluster.state.tf
+          terraform init -input=false -backend-config ./env/cluster.state.tf
         
       - name: Terraform plan
         id: plan
@@ -77,8 +77,8 @@ jobs:
         run: |
           terraform plan -input=false -refresh=true -var-file=./env/cluster.tfvars
         
-      - name: Terraform Apply
-        id: apply
+      - name: Terraform Destroy
+        id: destroy
         continue-on-error: true
         working-directory: ./
         run: |
