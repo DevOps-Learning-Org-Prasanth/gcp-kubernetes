@@ -8,6 +8,10 @@ variable "tiercode" {
   description = "tier code of the machine"
 }
 
+variable "count" {
+  type        = string
+  description = "Number of machines to create"
+}
 variable "machine_type" {
   type        = string
   description = "size of the vm to create."
