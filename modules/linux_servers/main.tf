@@ -1,6 +1,7 @@
 resource "google_compute_instance" "main" {
   count = var.server_count
   name  = "us-1c-${var.tiercode}-vm${count.index}"
+  zone  = var.zone
   tags  = local.tags
 
   machine_type = var.machine_type
