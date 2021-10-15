@@ -9,6 +9,9 @@ module "vpc" {
 module "firewall" {
   source    = "./modules/firewall"
   firewalls = var.firewalls
+  depends_on = [
+    module.vpc
+  ]
 }
 
 # loadbalancer
