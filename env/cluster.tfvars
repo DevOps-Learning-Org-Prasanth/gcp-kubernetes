@@ -13,21 +13,21 @@ firewalls = [
   {
     name : "master",
     ports : ["6443", "2379", "2380", "10250", "10251", "10252", "10255"],
-    tags : "master_node",
+    tags : "master",
   },
   {
     name : "worker",
     ports : ["6873", "10250", "10255", "3000-32767"],
-    tags : "worker_node",
+    tags : "worker",
   },
   {
     name : "public",
     ports : ["30000-30100"],
-    tags : "public_access",
+    tags : "public",
   },
   {
     name : "ssh",
     ports : ["22"],
-    tags : "ssh_access",
+    tags : "ssh",
   }
 ]
