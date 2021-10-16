@@ -21,7 +21,8 @@ module "loadbalancer" {
   depends_on = [
     module.master_node, module.worker_node
   ]
-  ports = ["30000"]
+  ports = [for firewall in var.firewalls : firewall.ports if firewall.name == "public"]
+  health_check_port = "30000"
 }
 
 # master node
