@@ -2,16 +2,16 @@
 resource "google_compute_target_pool" "main" {
   name          = "kube-cluster-pool"
   instances     = var.instances
-  health_checks = [google_compute_health_check.tcp.id]
+  health_checks = [google_compute_health_check.tcp[*].id]
 }
 
 # health check
 resource "google_compute_health_check" "tcp" {
-  name = "tcp-health-check"
-  dynamic "tcp_health_check" {
-    for_each = toset(local.health_check_ports)
+  count = length(local.health_check_ports)
+  name = "tcp-health-check-${local.health_check_ports[count.index]}"
+  tcp_health_check {
     content {
-      port = tcp_health_check.value
+      port = local.health_check_ports[count.index]
     }
   }
 }
