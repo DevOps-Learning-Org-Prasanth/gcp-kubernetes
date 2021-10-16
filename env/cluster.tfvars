@@ -26,8 +26,8 @@ firewalls = [
     tags : "public",
   },
   {
-    name : "ssh",
-    ports : ["22"],
-    tags : "ssh",
+    name : "default",
+    ports : ["22", "443", "8080", "80"],
+    tags : "default",
   }
 ]
