@@ -15,9 +15,15 @@ module "firewall" {
 }
 
 # loadbalancer
-# module "loadbalancer" {
-# source = "./modules/loadbalancer"
-# }
+module "loadbalancer" {
+  source    = "./modules/loadbalancer"
+  instances = concat(module.master_node.instances, module.worker_node.instances)
+  depends_on = [
+    module.master_node, module.worker_node
+  ]
+  ports = lookup({ for firewall in var.firewalls : firewall.name => firewall.ports }, "public")
+  # health_check_port = "30000"
+}
 
 # master node
 module "master_node" {

@@ -1,19 +1,14 @@
-# variable "subnets" {
-# type = list(object({
-# name = string
-# cidr = string
-# }))
-# description = <<-DESC
-# List of subnets to be created:
-# format:
-# {
-# name : kubecluster,
-# cidr : 10.0.20.0/24,
-# }
-# DESC
-# }
-# 
 # variable "region" {
 # type        = string
 # description = "Region where subnet should be created"
 # }
+
+variable "ports" {
+  type        = list(string)
+  description = "ports required for forwarding rule"
+}
+
+variable "instances" {
+  type        = list(string)
+  description = "Instances to be included in the target pool"
+}

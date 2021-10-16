@@ -9,7 +9,7 @@ variable "tiercode" {
 }
 
 variable "server_count" {
-  type        = string
+  type        = number
   description = "Number of machines to create"
 }
 variable "machine_type" {
