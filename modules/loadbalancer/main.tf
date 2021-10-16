@@ -20,7 +20,7 @@ resource "google_compute_health_check" "tcp" {
 resource "google_compute_forwarding_rule" "main" {
   name                  = "kube-lb"
   ip_protocol           = "TCP"
-  port_range            = "TargetPool"
+  port_range            = "30000-30003"
   target                = google_compute_target_pool.main.id
   load_balancing_scheme = "EXTERNAL"
   allow_global_access   = true
