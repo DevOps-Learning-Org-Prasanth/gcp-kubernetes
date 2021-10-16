@@ -22,7 +22,7 @@ module "loadbalancer" {
     module.master_node, module.worker_node
   ]
   ports             = [for firewall in var.firewalls : firewall.ports if firewall.name == "public"]
-  health_check_port = "30000"
+  # health_check_port = "30000"
 }
 
 # master node
