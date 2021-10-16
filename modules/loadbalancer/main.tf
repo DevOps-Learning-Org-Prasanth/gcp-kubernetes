@@ -2,7 +2,7 @@
 resource "google_compute_target_pool" "main" {
   name          = "kube-cluster-pool"
   instances     = var.instances
-  health_checks = [for i in range(length(local.health_check_ports)): google_compute_health_check.tcp[i].id]
+  health_checks = [for i in range(length(local.health_check_ports)): google_compute_health_check.tcp[i].name]
 }
 
 # health check
