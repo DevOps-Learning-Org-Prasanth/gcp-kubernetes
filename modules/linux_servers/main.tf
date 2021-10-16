@@ -22,6 +22,6 @@ resource "google_compute_instance" "main" {
 
   service_account {
     scopes = ["cloud-platform"]
-    email = data.google_service_account.main.email
+    email  = data.google_service_account.main.email
   }
 }
