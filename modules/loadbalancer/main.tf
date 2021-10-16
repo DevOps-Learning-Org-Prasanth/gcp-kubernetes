@@ -8,11 +8,9 @@ resource "google_compute_target_pool" "main" {
 # health check
 resource "google_compute_health_check" "tcp" {
   count = length(local.health_check_ports)
-  name = "tcp-health-check-${local.health_check_ports[count.index]}"
+  name  = "tcp-health-check-${local.health_check_ports[count.index]}"
   tcp_health_check {
-    content {
-      port = local.health_check_ports[count.index]
-    }
+    port = local.health_check_ports[count.index]
   }
 }
 
