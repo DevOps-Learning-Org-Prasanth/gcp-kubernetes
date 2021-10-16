@@ -2,10 +2,6 @@ subnets = [
   {
     name : "kubecluster",
     cidr : "10.255.43.0/24",
-  },
-  {
-    name : "gateway",
-    cidr : "10.255.44.0/24",
   }
 ]
 
@@ -26,8 +22,8 @@ firewalls = [
     tags : "public",
   },
   {
-    name : "ssh",
-    ports : ["22"],
-    tags : "ssh",
+    name : "default",
+    ports : ["22", "443", "8080", "80"],
+    tags : "default",
   }
 ]
