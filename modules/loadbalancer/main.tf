@@ -2,17 +2,17 @@
 resource "google_compute_target_pool" "main" {
   name          = "kube-cluster-pool"
   instances     = local.instances
-  health_checks = []
+  health_checks = [google_compute_health_check.tcp.name]
 }
 
 # health check
-# resource "google_compute_health_check" "tcp" {
-#   count = length(local.health_check_ports)
-#   name  = "tcp-health-check-${local.health_check_ports[count.index]}"
-#   tcp_health_check {
-#     port = local.health_check_ports[count.index]
-#   }
-# }
+resource "google_compute_health_check" "tcp" {
+  count = length(local.health_check_ports)
+  name  = "tcp-health-check-${80}"
+  tcp_health_check {
+    port = 80
+  }
+}
 
 # forwarding rule
 resource "google_compute_forwarding_rule" "main" {
