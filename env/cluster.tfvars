@@ -2,10 +2,6 @@ subnets = [
   {
     name : "kubecluster",
     cidr : "10.255.43.0/24",
-  },
-  {
-    name : "gateway",
-    cidr : "10.255.44.0/24",
   }
 ]
 
