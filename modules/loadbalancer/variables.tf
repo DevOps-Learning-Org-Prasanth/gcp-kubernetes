@@ -1,7 +1,7 @@
-# variable "region" {
-# type        = string
-# description = "Region where subnet should be created"
-# }
+variable "zone" {
+  type        = string
+  description = "Region where subnet should be created"
+}
 
 variable "ports" {
   type        = list(string)

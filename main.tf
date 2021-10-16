@@ -22,6 +22,7 @@ module "loadbalancer" {
     module.master_node, module.worker_node
   ]
   ports = lookup({ for firewall in var.firewalls : firewall.name => firewall.ports }, "public")
+  zone = local.zone
   # health_check_port = "30000"
 }
 

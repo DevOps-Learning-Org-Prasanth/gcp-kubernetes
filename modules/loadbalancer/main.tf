@@ -1,7 +1,7 @@
 # target pool
 resource "google_compute_target_pool" "main" {
   name          = "kube-cluster-pool"
-  instances     = var.instances
+  instances     = local.instances
   health_checks = []
 }
 
