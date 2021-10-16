@@ -21,5 +21,5 @@ resource "google_compute_forwarding_rule" "main" {
   port_range            = var.ports[0]
   target                = google_compute_target_pool.main.id
   load_balancing_scheme = "EXTERNAL"
-  allow_global_access   = true
+  # allow_global_access   = true
 }
