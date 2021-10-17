@@ -33,12 +33,6 @@ jobs:
         run: |
           terraform init -input=false -backend-config ./env/cluster.state.tf
         
-      - name: Terraform plan
-        id: plan
-        working-directory: ./ 
-        run: |
-          terraform plan -input=false -refresh=true -var-file=./env/cluster.tfvars
-        
       - name: Terraform Apply
         id: apply
         continue-on-error: true
@@ -70,12 +64,6 @@ jobs:
         working-directory: ./
         run: |
           terraform init -input=false -backend-config ./env/cluster.state.tf
-        
-      - name: Terraform plan
-        id: plan
-        working-directory: ./ 
-        run: |
-          terraform plan -input=false -refresh=true -var-file=./env/cluster.tfvars
         
       - name: Terraform Destroy
         id: destroy
