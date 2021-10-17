@@ -8,7 +8,7 @@ resource "google_compute_firewall" "inbound" {
   }
   target_tags = [each.value.tags]
   direction   = "INGRESS"
-  priority    = each.value.priority
+  priority    = each.value.ingress_priority
 }
 
 resource "google_compute_firewall" "outbound" {
@@ -21,4 +21,5 @@ resource "google_compute_firewall" "outbound" {
   }
   target_tags = [each.value.tags]
   direction   = "EGRESS"
+  priority    = each.value.egress_priority
 }
