@@ -12,7 +12,7 @@ resource "google_compute_firewall" "inbound" {
 }
 
 resource "google_compute_firewall" "outbound" {
-  for_each = { for firewall in var.firewalls : firewall.name => firewall if firewall.name != "default" }
+  for_each = { for firewall in var.firewalls : firewall.name => firewall }
   name     = "open-tcp-${each.value.name}-outbound"
   network  = "kubernetes"
   allow {
