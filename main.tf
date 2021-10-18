@@ -19,7 +19,7 @@ module "loadbalancer" {
   source    = "./modules/loadbalancer"
   instances = concat(module.master_node.instances, module.worker_node.instances)
   depends_on = [
-    module.master_node, module.worker_node
+    module.master_node#, module.worker_node
   ]
   ports = lookup({ for firewall in var.firewalls : firewall.name => firewall.ports }, "public")
   zone  = local.zone
