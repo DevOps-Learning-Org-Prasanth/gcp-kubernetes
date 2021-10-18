@@ -29,7 +29,7 @@ firewalls = [
   },
   {
     name : "default",
-    ports : ["22", "443", "8080", "80", "9000", "12345", "12346"],
+    ports : ["22", "443", "8080", "80"],
     tags : "default",
     ingress_priority : 1000,
     egress_priority : 1004,
