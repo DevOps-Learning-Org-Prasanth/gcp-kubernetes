@@ -22,10 +22,10 @@ resource "google_compute_router_nat" "main" {
   name                               = "${var.region}-${google_compute_network.main.name}-nat-gateway"
   nat_ip_allocate_option             = "AUTO_ONLY"
   source_subnetwork_ip_ranges_to_nat = "LIST_OF_SUBNETWORKS"
-  router                             = google.google_compute_router.main.name
+  router                             = google_compute_router.main.name
   region                             = var.region
   subnetwork {
-    name                    = google_computre_subnetwork.main.id
+    name                    = google_compute_subnetwork.main.id
     source_ip_ranges_to_nat = ["ALL_IP_RANGES"]
   }
 }
