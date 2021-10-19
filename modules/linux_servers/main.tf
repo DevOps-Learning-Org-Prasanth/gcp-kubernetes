@@ -60,7 +60,7 @@ resource "google_compute_instance" "main" {
     ${data.google_secret_manager_secret_version.main.secret_data}
     EOM
     fi
-    
+
     # Generate first-boot.json file
     json_exist=`find /etc/chef -name first-boot.json -type f -perm 644| wc -l`
     if [ "$json_exist" -eq 1 ]
@@ -74,7 +74,7 @@ resource "google_compute_instance" "main" {
      "policy_group" : "${var.policy_group}"
     }
     EOM
-    chef-client -j /etc/chef/first-boot.json
+    # chef-client -j /etc/chef/first-boot.json
     fi 
   EOF
 }
