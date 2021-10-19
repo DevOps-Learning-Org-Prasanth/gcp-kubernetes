@@ -22,7 +22,7 @@ firewalls = [
   },
   {
     name : "public",
-    ports : ["30000-30002"],
+    ports : ["30000-30010"],
     tags : "public",
     ingress_priority : 1003,
     egress_priority : 1007,
