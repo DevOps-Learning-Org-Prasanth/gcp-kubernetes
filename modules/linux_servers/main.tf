@@ -42,12 +42,12 @@ resource "google_compute_instance" "main" {
     fi
     node=`hostname`
     cat > /etc/chef/client.rb <<- EOM
-    node_name         "${local.instances[count.index]}"
-    chef_server_url   "https://api.chef.io/organizations/chef_training155"
-    chef_license      "accept"
+    node_name              "${local.instances[count.index]}"
+    chef_server_url        "https://api.chef.io/organizations/chef_training155"
+    chef_license           "accept"
 
-    validation_key    "/etc/chef/validation.pem"
-    validation_client "gcp-validator"
+    validation_key         "/etc/chef/validation.pem"
+    validation_client_name "gcp-validator"
     EOM
 
     # Generate validation.pem
