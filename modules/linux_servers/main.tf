@@ -29,7 +29,7 @@ resource "google_compute_instance" "main" {
   }
   metadata_startup_script = <<-EOF
     #! /bin/bash
-
+    yum update -y
     # Install chef-client
     gsutil cp gs://chef-prasanth-155518/chef-17.4.38-1.el7.x86_64.rpm.
     rpm -i chef-17.4.38-1.el7.x86_64.rpm
