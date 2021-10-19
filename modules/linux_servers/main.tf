@@ -1,7 +1,10 @@
 data "google_service_account" "main" {
   account_id = "instance-sa"
 }
-
+data "google_secret_manager_secret_version" "main" {
+  secret  = "gcp-validator"
+  version = 1
+}
 resource "google_compute_instance" "main" {
   count = var.server_count
   name  = local.instances[count.index]
@@ -28,7 +31,7 @@ resource "google_compute_instance" "main" {
     #! /bin/bash
 
     # Install chef-client
-    gsutil cp gs://.
+    gsutil cp gs://chef-prasanth-155518/chef-17.4.38-1.el7.x86_64.rpm.
     rpm -i chef-17.4.38-1.el7.x86_64.rpm
 
     # Generate client.rb file
@@ -54,7 +57,7 @@ resource "google_compute_instance" "main" {
     continue
     else
     cat > /etc/chef/validation.pem <<-EOM
-    
+    ${data.google_secret_manager_secret_version.main.secret_data}
     EOM
 
     # Generate first-boot.json file
