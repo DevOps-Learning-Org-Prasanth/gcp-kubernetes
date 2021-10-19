@@ -38,6 +38,8 @@ module "master_node" {
   depends_on = [
     module.firewall
   ]
+  policy_name  = "master_node"
+  policy_group = "kubernetes"
 }
 
 # worker nodes
@@ -52,4 +54,6 @@ module "worker_node" {
   depends_on = [
     module.firewall
   ]
+  policy_name  = "worker_node"
+  policy_group = "kubernetes"
 }

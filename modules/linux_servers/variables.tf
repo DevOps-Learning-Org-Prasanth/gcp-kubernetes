@@ -26,3 +26,13 @@ variable "zone" {
   type        = string
   description = "region where the resource should be created"
 }
+
+variable "policy_name" {
+  type        = string
+  description = "Policy name of the node"
+}
+
+variable "policy_group" {
+  type        = string
+  description = "policy group of node"
+}
