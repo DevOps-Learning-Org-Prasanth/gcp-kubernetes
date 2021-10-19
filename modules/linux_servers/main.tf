@@ -63,18 +63,17 @@ resource "google_compute_instance" "main" {
 
     # Generate first-boot.json file
     json_exist=`find /etc/chef -name first-boot.json -type f -perm 644| wc -l`
-    if [ "$json_exist" -eq 1 ]
+    if [ "$json_exist" -eq 0 ]
     then
-    echo "First-boot already exists"
-    chef-client
-    else
     cat > /etc/chef/first-boot.json <<-EOM
     {
      "policy_name" : "${var.policy_name}",
      "policy_group" : "${var.policy_group}"
     }
     EOM
-    # chef-client -j /etc/chef/first-boot.json
-    fi 
+    chef-client -j /etc/chef/first-boot.json
+    else
+    chef-client
+    fi
   EOF
 }

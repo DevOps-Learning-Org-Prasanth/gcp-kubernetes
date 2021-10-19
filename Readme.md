@@ -20,10 +20,11 @@
 
 ## Creating vms
 <!-- 1. Create a custom vpc network. -->
-1. - [x]create a subnet for gcp cluster
-2. - [x]create firewallrules on both the subnets
-3. - [x]create three vm's for kubernetes cluster
-4. create a loadbalancer for public access
+1. - [x] create a subnet for gcp cluster
+2. - [x] create firewallrules on both the subnets
+3. - [x] create three vm's for kubernetes cluster
+4. - [x] create a loadbalancer for public access(pods)
+5. - [x] create a nat gateway for internet access to vm
 
 ## VPC and Firewall rules
 - https://cloud.google.com/vpc/docs/vpc
